@@ -1,0 +1,50 @@
+﻿@model Alcaldia.Models.Deducciones
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Deducciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Deducion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deducion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeduccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeduccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.Cedula)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdDeducciones }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

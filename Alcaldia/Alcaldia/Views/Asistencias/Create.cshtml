@@ -1,0 +1,201 @@
+﻿@*@model Alcaldia.Models.Asistencias*@
+
+@using System.Data
+@model DataSet
+
+@*@model IEnumerable<Alcaldia.Models.Asistencias>*@
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2>Ingresar Asistencia</h2>
+
+
+@*@using (Html.BeginForm()) 
+{*@
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">
+        
+        <h4>Asistencias</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Inss, "Inss", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Inss", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Inss, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaAsistencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaAsistencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FechaAsistencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoraEntrada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HoraEntrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoraEntrada, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirmaEntrada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.FirmaEntrada)
+                    @Html.ValidationMessageFor(model => model.FirmaEntrada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HoraSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.HoraSalida)
+                    @Html.ValidationMessageFor(model => model.HoraSalida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirmaSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.FirmaSalida)
+                    @Html.ValidationMessageFor(model => model.FirmaSalida, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Estado)
+                    @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+@using (Html.BeginForm("Create", "Asistencias", FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="col">
+            @Html.TextBox("Insertar", "", new { @class = "form-control", autocomplete = "off",@type="date" }) <br />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-info "><span class="glyphicon glyphicon-pencil "></span></button>
+        </div>
+    </div>
+}
+@if (Model !=null)
+{
+        <table class="table table-info">
+            <tr>
+                <th>
+                    @Html.DisplayName("Inss")
+                </th>
+                <th>
+                    @Html.DisplayName("Nombre Completo")
+                </th>
+                <th>
+                   @Html.DisplayName("Fecha Asistencia")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora Entrada")
+                </th>
+                @*<th>
+                    @Html.DisplayName("Firma Entrada")
+                </th>*@
+                <th>
+                    @Html.DisplayName("Hora Salida")
+                </th>
+                @*<th>
+                    @Html.DisplayName("Firma Salida")
+                </th>*@
+              
+               
+                <th></th>
+            </tr>
+            @foreach (DataRow row in Model.Tables[0].Rows)
+
+            {
+               
+                <tr>
+                    <td>
+                        @row["Inss"]
+                    
+                      
+                    </td>
+                    <td>
+                        @row["NombreCompleto"]
+                        
+                    </td>
+                    <td>
+                        @*@row["FechaAsistencia"]*@
+                        <div class="col-md-6">
+                         @Html.TextBox("FechaAsistencia", null, new { @class = "form-control", @readonly = "readonly" })
+                           
+                          </div>
+                    </td>
+                    <td>
+                        @*@row["HoraEntrada"]*@
+                        @using (Html.BeginForm())
+                        {
+                        <div class="col-md-8">
+                        @Html.TextBox("HoraEntrada", null, new { @class = "form-control", autocomplete = "off", @type = "time" })
+                        </div>
+                        }
+                    </td>
+                    @*<td>
+                        @row["FirmaEntrada"]
+                    </td>*@
+                    <td>
+                        @*@row["HoraSalida"]*@
+                        @using (Html.BeginForm())
+                        {
+                        <div class="col-md-6">
+                        @Html.TextBox("HoraSalida", null, new { @class = "form-control", autocomplete = "off", @type = "time", @readonly = "readonly" })
+                        </div>
+                        }
+                    </td>
+                    @*<td>
+                        @row["FirmaSalida"]
+                    </td>*@
+                  
+                    </tr>
+            }
+</table>
+}
+@using (Html.BeginForm("Create", "Asistencias", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @*<div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>*@
+        <div class="col">
+            <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-pencil "></span></button>
+        </div>
+
+        </div>
+}
+
+@*}*@
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

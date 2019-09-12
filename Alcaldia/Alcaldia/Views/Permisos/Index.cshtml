@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Alcaldia.Models.Permisos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fechapermisos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horapermisossalida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horapermisosentrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fechapermisos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horapermisossalida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horapermisosentrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleado.Cedula)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPermisos }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPermisos }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPermisos })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,66 @@
+﻿@model Alcaldia.Models.Subcidio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subcidio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagenSubcidio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagenSubcidio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaIniciosubcidio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaIniciosubcidio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.Cedula)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoSubcidio.Subcidio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoSubcidio.Subcidio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSubcidio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

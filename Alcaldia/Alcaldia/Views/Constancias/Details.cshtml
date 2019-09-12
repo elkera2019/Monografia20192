@@ -1,0 +1,114 @@
+﻿@model Alcaldia.Models.Constancias
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles Constancias</h2>
+
+<div>
+    @*<h4>Constancias</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model=>model.Inss)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Inss)
+        </dd>
+        <dt>
+            @Html.DisplayName("Cedula")
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Empleado.Cedula)*@
+            @Html.Display("Cedula")
+        </dd>
+        <dt>
+            @Html.DisplayName("Nombre Completo")
+        </dt>
+        <dd>
+            @Html.Display("NombreCompleto")
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Fechaconstancias)*@
+        @Html.DisplayName("Fecha de constancia")
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Fechaconstancias)*@
+            @Html.Display("FechaD")
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Horaconstancias)*@
+            @Html.DisplayName("Hora de constancia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horaconstancias)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ServicioMedico)*@
+            @Html.DisplayName("Servicio Medico")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicioMedico)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Especialidad)*@
+            @Html.DisplayName("Especialidad")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidad)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Observaciones)*@
+           @Html.DisplayName("Observaciones")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.NumeroConstancia)*@
+            @Html.DisplayName("Numero de constancia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroConstancia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escaner)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Escaner)*@
+            @*<img src="@Url.Action("VerImagen","ViewPhotos",new { Inss=Model.Inss})" alt="Image"/>*@
+            <img src="@ViewData["Escaner"]" style="width: 450px; height: 350px;"/>
+      
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>*@
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdConstaniacia,Inss=Model.Inss ,Fecha=Model.Fechaconstancias}) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

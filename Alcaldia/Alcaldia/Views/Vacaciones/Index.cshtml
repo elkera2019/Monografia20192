@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Alcaldia.Models.Vacaciones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadAdministrativa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoFuncional)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dirigido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadDias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaRetorna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnidadAdministrativa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoFuncional)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dirigido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadDias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaRetorna)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleado.Cedula)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdVacaciones }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdVacaciones }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdVacaciones })
+        </td>
+    </tr>
+}
+
+</table>

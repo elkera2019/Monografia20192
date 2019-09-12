@@ -1,0 +1,9 @@
+﻿@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "Imprimir2";
+}
+
+<h2>Imprimir2</h2>
+
+@*@Html.ReportViewer(ViewBag.RPT as Microsoft.Reporting.WebForms.ReportViewer);*@
+@Html.ReportViewer(ViewBag.RPT as Microsoft.Reporting.WebForms.ReportViewer,new {Style="Width:100%;Height:100%;"})

@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Alcaldia.Models.Empleado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Empleados</h2>
+
+<p>
+    @Html.ActionLink("Ingresar Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("N° Inss")
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>*@
+        <th>
+            @Html.DisplayName("Nombre Completo")
+        </th>
+        @*<th>
+           @Html.DisplayName("Estado Civil")
+        </th>
+        <th>
+           @Html.DisplayName("Fecha de Nacimiento")
+        </th>*@
+        <th>
+            @Html.DisplayName("Fecha de Ingreso")
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.DatosLaborales)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Hospital)
+        </th>
+        @*<th>
+           @Html.DisplayName("Nivel Academico")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vacaciones)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayName("Departamento")
+        </th>
+        <th>
+            @Html.DisplayName("Planilla")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inss)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreCompleto)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.EstadoCivil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DatosLaborales)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Hospital)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.NivelAcademico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cargo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vacaciones)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departamento.TpDepartamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Planilla.TpPlanilla)
+        </td>
+        <td>
+            @*@Html.ActionLink("Editar", "Edit", new { id=item.Inss }) |*@
+            @Html.ActionLink("Detalles", "Details", new { id=item.Inss }) |
+            @*@Html.ActionLink("Eliminar", "Delete", new { id=item.Inss })*@
+        </td>
+    </tr>
+}
+
+</table>

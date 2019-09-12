@@ -1,0 +1,74 @@
+﻿@model Alcaldia.Models.Asistencias
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Asistencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAsistencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAsistencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirmaEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirmaEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirmaSalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirmaSalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.Cedula)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdAsistencias }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

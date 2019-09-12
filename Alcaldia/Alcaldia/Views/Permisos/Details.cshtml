@@ -1,0 +1,66 @@
+﻿@model Alcaldia.Models.Permisos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Permisos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fechapermisos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fechapermisos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horapermisossalida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horapermisossalida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horapermisosentrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horapermisosentrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Observaciones)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.Cedula)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdPermisos }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

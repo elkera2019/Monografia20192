@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Alcaldia.Models.Constancias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Constancias</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="col">
+        @Html.TextBox("buscar", "", new { @class = "form-control", autocomplete = "off" }) <br />
+            </div>
+        <div class="col">
+        <button type="submit" class="btn btn-info "><span class="glyphicon glyphicon-search "></span></button>
+            </div>
+
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Ingresar nueva constacia", "Create")
+    @*<button type="submit" style="margin-left:75%;" @Url.Action("Imprimir","Constancias") class="btn btn-lg glyphicon glyphicon-print"></button>*@
+   @if (Model != null && ViewData["MSJ2"].Equals("Empleado econtrado."))
+   {
+       using (Html.BeginForm("Imprimir2", "Constancias", FormMethod.Post))
+       {
+    @*<input type="submit" style="margin-left:75%" class="btn btn-lg glyphicon glyphicon-print" >*@
+        <button type="submit" style="margin-left:75%" class="btn btn-lg glyphicon glyphicon-print" target="_blank" ></button>
+     }
+   }
+</p>
+@if (Model != null && ViewData["MSJ2"].Equals("Empleado econtrado."))
+{
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+
+            <th>
+                @Html.DisplayName("Inss")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fechaconstancias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horaconstancias)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServicioMedico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observaciones)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroConstancia)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Escaner)
+                </th>*@
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Empleado.Cedula)
+            </th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Inss)
+            </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fechaconstancias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Horaconstancias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServicioMedico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Especialidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observaciones)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroConstancia)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Escaner)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleado.Cedula)
+        </td>
+        <td>
+            @*@Html.ActionLink("Editar", "Edit", new { id=item.IdConstaniacia }) |*@
+            @Html.ActionLink("Detalles", "Details", new { id = item.IdConstaniacia, Inss = item.Inss }) |
+            @*@Html.ActionLink("Eliminar", "Delete", new { id=item.IdConstaniacia })*@
+        </td>
+    </tr>
+}
+
+</table>
+}
+
+@if (ViewData["MSJ2"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal('@ViewData["MSJ2"]');
+        };
+    </script>
+}

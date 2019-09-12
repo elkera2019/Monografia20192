@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlcaldiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asistencias">
+          <Key>
+            <PropertyRef Name="IdAsistencias" />
+          </Key>
+          <Property Name="IdAsistencias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="FechaAsistencia" Type="date" />
+          <Property Name="HoraEntrada" Type="time" Precision="7" />
+          <Property Name="FirmaEntrada" Type="bit" />
+          <Property Name="FirmaSalida" Type="bit" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="HoraSalida" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Constancias">
+          <Key>
+            <PropertyRef Name="IdConstaniacia" />
+          </Key>
+          <Property Name="IdConstaniacia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="Fechaconstancias" Type="date" />
+          <Property Name="Horaconstancias" Type="time" Precision="7" />
+          <Property Name="ServicioMedico" Type="varchar" MaxLength="100" />
+          <Property Name="Especialidad" Type="varchar" MaxLength="100" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="255" />
+          <Property Name="NumeroConstancia" Type="varchar" MaxLength="255" />
+          <Property Name="Escaner" Type="image" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Deducciones">
+          <Key>
+            <PropertyRef Name="IdDeducciones" />
+          </Key>
+          <Property Name="IdDeducciones" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="Deducion" Type="float" />
+          <Property Name="FechaDeduccion" Type="date" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDpt" />
+          </Key>
+          <Property Name="IdDpt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TpDepartamento" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Inss" />
+          </Key>
+          <Property Name="Inss" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Cedula" Type="varchar" MaxLength="255" />
+          <Property Name="NombreCompleto" Type="varchar" MaxLength="255" />
+          <Property Name="EstadoCivil" Type="varchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="FechaIngreso" Type="date" />
+          <Property Name="DatosLaborales" Type="varchar" MaxLength="255" />
+          <Property Name="Celular" Type="varchar" MaxLength="8" />
+          <Property Name="Telefono" Type="varchar" MaxLength="30" />
+          <Property Name="IdPlanilla" Type="int" />
+          <Property Name="IdDpt" Type="int" />
+          <Property Name="Hospital" Type="varchar" MaxLength="255" />
+          <Property Name="NivelAcademico" Type="varchar" MaxLength="100" />
+          <Property Name="Cargo" Type="varchar" MaxLength="255" />
+          <Property Name="Salario" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Vacaciones" Type="float" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="Sexo" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="IdPermisos" />
+          </Key>
+          <Property Name="IdPermisos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="Fechapermisos" Type="date" />
+          <Property Name="Horapermisossalida" Type="time" Precision="7" />
+          <Property Name="Horapermisosentrada" Type="time" Precision="7" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="255" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Planilla">
+          <Key>
+            <PropertyRef Name="IdPlanilla" />
+          </Key>
+          <Property Name="IdPlanilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TpPlanilla" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Subcidio">
+          <Key>
+            <PropertyRef Name="IdSubcidio" />
+          </Key>
+          <Property Name="IdSubcidio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="IdTipoSubcido" Type="int" />
+          <Property Name="ImagenSubcidio" Type="image" />
+          <Property Name="FechaIniciosubcidio" Type="date" />
+          <Property Name="Dias" Type="float" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoSubcidio">
+          <Key>
+            <PropertyRef Name="IdTipoSubcidio" />
+          </Key>
+          <Property Name="IdTipoSubcidio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subcidio" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Vacaciones">
+          <Key>
+            <PropertyRef Name="IdVacaciones" />
+          </Key>
+          <Property Name="IdVacaciones" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnidadAdministrativa" Type="varchar" MaxLength="100" />
+          <Property Name="CodigoFuncional" Type="varchar" MaxLength="100" />
+          <Property Name="Dirigido" Type="varchar" MaxLength="255" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="CantidadDias" Type="float" />
+          <Property Name="FechaInicial" Type="date" />
+          <Property Name="FechaRetorna" Type="date" />
+        </EntityType>
+        <Association Name="FK_Asistencias_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Asistencias" Type="Self.Asistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Asistencias">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Constancias_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Constancias" Type="Self.Constancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Constancias">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deducciones_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Deducciones" Type="Self.Deducciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Deducciones">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDpt" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdDpt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Planilla">
+          <End Role="Planilla" Type="Self.Planilla" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planilla">
+              <PropertyRef Name="IdPlanilla" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdPlanilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permisos_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Permisos">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcidio_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Subcidio" Type="Self.Subcidio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Subcidio">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcidio_TipoSubcidio">
+          <End Role="TipoSubcidio" Type="Self.TipoSubcidio" Multiplicity="0..1" />
+          <End Role="Subcidio" Type="Self.Subcidio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSubcidio">
+              <PropertyRef Name="IdTipoSubcidio" />
+            </Principal>
+            <Dependent Role="Subcidio">
+              <PropertyRef Name="IdTipoSubcido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacaciones_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Vacaciones" Type="Self.Vacaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Vacaciones">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlcaldiaModelStoreContainer">
+          <EntitySet Name="Asistencias" EntityType="Self.Asistencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Constancias" EntityType="Self.Constancias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deducciones" EntityType="Self.Deducciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planilla" EntityType="Self.Planilla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subcidio" EntityType="Self.Subcidio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoSubcidio" EntityType="Self.TipoSubcidio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asistencias_Empleado" Association="Self.FK_Asistencias_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Asistencias" EntitySet="Asistencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Constancias_Empleado" Association="Self.FK_Constancias_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Constancias" EntitySet="Constancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deducciones_Empleado" Association="Self.FK_Deducciones_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Deducciones" EntitySet="Deducciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Departamento" Association="Self.FK_Empleado_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Planilla" Association="Self.FK_Empleado_Planilla">
+            <End Role="Planilla" EntitySet="Planilla" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permisos_Empleado" Association="Self.FK_Permisos_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Permisos" EntitySet="Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcidio_Empleado" Association="Self.FK_Subcidio_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Subcidio" EntitySet="Subcidio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcidio_TipoSubcidio" Association="Self.FK_Subcidio_TipoSubcidio">
+            <End Role="TipoSubcidio" EntitySet="TipoSubcidio" />
+            <End Role="Subcidio" EntitySet="Subcidio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacaciones_Empleado" Association="Self.FK_Vacaciones_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Vacaciones" EntitySet="Vacaciones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlcaldiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asistencias">
+          <Key>
+            <PropertyRef Name="IdAsistencias" />
+          </Key>
+          <Property Name="IdAsistencias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAsistencia" Type="DateTime" Precision="0" />
+          <Property Name="HoraEntrada" Type="Time" Precision="7" />
+          <Property Name="FirmaEntrada" Type="Boolean" />
+          <Property Name="FirmaSalida" Type="Boolean" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="HoraSalida" Type="Time" Precision="7" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Asistencias_Empleado" FromRole="Asistencias" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Constancias">
+          <Key>
+            <PropertyRef Name="IdConstaniacia" />
+          </Key>
+          <Property Name="IdConstaniacia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fechaconstancias" Type="DateTime" Precision="0" />
+          <Property Name="Horaconstancias" Type="Time" Precision="7" />
+          <Property Name="ServicioMedico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Especialidad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroConstancia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Escaner" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Constancias_Empleado" FromRole="Constancias" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Deducciones">
+          <Key>
+            <PropertyRef Name="IdDeducciones" />
+          </Key>
+          <Property Name="IdDeducciones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Deducion" Type="Double" />
+          <Property Name="FechaDeduccion" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Deducciones_Empleado" FromRole="Deducciones" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="IdDpt" />
+          </Key>
+          <Property Name="IdDpt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TpDepartamento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Departamento" FromRole="Departamento" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="Inss" />
+          </Key>
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cedula" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NombreCompleto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EstadoCivil" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="FechaIngreso" Type="DateTime" Precision="0" />
+          <Property Name="DatosLaborales" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="IdPlanilla" Type="Int32" />
+          <Property Name="IdDpt" Type="Int32" />
+          <Property Name="Hospital" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NivelAcademico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Vacaciones" Type="Double" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="Sexo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Asistencias" Relationship="Self.FK_Asistencias_Empleado" FromRole="Empleado" ToRole="Asistencias" />
+          <NavigationProperty Name="Constancias" Relationship="Self.FK_Constancias_Empleado" FromRole="Empleado" ToRole="Constancias" />
+          <NavigationProperty Name="Deducciones" Relationship="Self.FK_Deducciones_Empleado" FromRole="Empleado" ToRole="Deducciones" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_Empleado_Departamento" FromRole="Empleado" ToRole="Departamento" />
+          <NavigationProperty Name="Planilla" Relationship="Self.FK_Empleado_Planilla" FromRole="Empleado" ToRole="Planilla" />
+          <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_Empleado" FromRole="Empleado" ToRole="Permisos" />
+          <NavigationProperty Name="Subcidio" Relationship="Self.FK_Subcidio_Empleado" FromRole="Empleado" ToRole="Subcidio" />
+          <NavigationProperty Name="Vacaciones1" Relationship="Self.FK_Vacaciones_Empleado" FromRole="Empleado" ToRole="Vacaciones" />
+        </EntityType>
+        <EntityType Name="Permisos">
+          <Key>
+            <PropertyRef Name="IdPermisos" />
+          </Key>
+          <Property Name="IdPermisos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fechapermisos" Type="DateTime" Precision="0" />
+          <Property Name="Horapermisossalida" Type="Time" Precision="7" />
+          <Property Name="Horapermisosentrada" Type="Time" Precision="7" />
+          <Property Name="Observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Permisos_Empleado" FromRole="Permisos" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Planilla">
+          <Key>
+            <PropertyRef Name="IdPlanilla" />
+          </Key>
+          <Property Name="IdPlanilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TpPlanilla" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Planilla" FromRole="Planilla" ToRole="Empleado" />
+        </EntityType>
+        <EntityType Name="Subcidio">
+          <Key>
+            <PropertyRef Name="IdSubcidio" />
+          </Key>
+          <Property Name="IdSubcidio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoSubcido" Type="Int32" />
+          <Property Name="ImagenSubcidio" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FechaIniciosubcidio" Type="DateTime" Precision="0" />
+          <Property Name="Dias" Type="Double" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Subcidio_Empleado" FromRole="Subcidio" ToRole="Empleado" />
+          <NavigationProperty Name="TipoSubcidio" Relationship="Self.FK_Subcidio_TipoSubcidio" FromRole="Subcidio" ToRole="TipoSubcidio" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoSubcidio">
+          <Key>
+            <PropertyRef Name="IdTipoSubcidio" />
+          </Key>
+          <Property Name="IdTipoSubcidio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subcidio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Subcidio1" Relationship="Self.FK_Subcidio_TipoSubcidio" FromRole="TipoSubcidio" ToRole="Subcidio" />
+        </EntityType>
+        <EntityType Name="Vacaciones">
+          <Key>
+            <PropertyRef Name="IdVacaciones" />
+          </Key>
+          <Property Name="IdVacaciones" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnidadAdministrativa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoFuncional" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dirigido" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadDias" Type="Double" />
+          <Property Name="FechaInicial" Type="DateTime" Precision="0" />
+          <Property Name="FechaRetorna" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Vacaciones_Empleado" FromRole="Vacaciones" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK_Asistencias_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Asistencias" Type="Self.Asistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Asistencias">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Constancias_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Constancias" Type="Self.Constancias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Constancias">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deducciones_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Deducciones" Type="Self.Deducciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Deducciones">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="IdDpt" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdDpt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Planilla">
+          <End Role="Planilla" Type="Self.Planilla" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planilla">
+              <PropertyRef Name="IdPlanilla" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="IdPlanilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permisos_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Permisos">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcidio_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Subcidio" Type="Self.Subcidio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Subcidio">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacaciones_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Vacaciones" Type="Self.Vacaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Vacaciones">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcidio_TipoSubcidio">
+          <End Role="TipoSubcidio" Type="Self.TipoSubcidio" Multiplicity="0..1" />
+          <End Role="Subcidio" Type="Self.Subcidio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoSubcidio">
+              <PropertyRef Name="IdTipoSubcidio" />
+            </Principal>
+            <Dependent Role="Subcidio">
+              <PropertyRef Name="IdTipoSubcido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlcaldiaEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asistencias" EntityType="Self.Asistencias" />
+          <EntitySet Name="Constancias" EntityType="Self.Constancias" />
+          <EntitySet Name="Deducciones" EntityType="Self.Deducciones" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+          <EntitySet Name="Planilla" EntityType="Self.Planilla" />
+          <EntitySet Name="Subcidio" EntityType="Self.Subcidio" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoSubcidio" EntityType="Self.TipoSubcidio" />
+          <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" />
+          <AssociationSet Name="FK_Asistencias_Empleado" Association="Self.FK_Asistencias_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Asistencias" EntitySet="Asistencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Constancias_Empleado" Association="Self.FK_Constancias_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Constancias" EntitySet="Constancias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deducciones_Empleado" Association="Self.FK_Deducciones_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Deducciones" EntitySet="Deducciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Departamento" Association="Self.FK_Empleado_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Planilla" Association="Self.FK_Empleado_Planilla">
+            <End Role="Planilla" EntitySet="Planilla" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permisos_Empleado" Association="Self.FK_Permisos_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Permisos" EntitySet="Permisos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcidio_Empleado" Association="Self.FK_Subcidio_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Subcidio" EntitySet="Subcidio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacaciones_Empleado" Association="Self.FK_Vacaciones_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Vacaciones" EntitySet="Vacaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcidio_TipoSubcidio" Association="Self.FK_Subcidio_TipoSubcidio">
+            <End Role="TipoSubcidio" EntitySet="TipoSubcidio" />
+            <End Role="Subcidio" EntitySet="Subcidio" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlcaldiaModelStoreContainer" CdmEntityContainer="AlcaldiaEntities1">
+          <EntitySetMapping Name="Asistencias">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Asistencias">
+              <MappingFragment StoreEntitySet="Asistencias">
+                <ScalarProperty Name="IdAsistencias" ColumnName="IdAsistencias" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="FechaAsistencia" ColumnName="FechaAsistencia" />
+                <ScalarProperty Name="HoraEntrada" ColumnName="HoraEntrada" />
+                <ScalarProperty Name="FirmaEntrada" ColumnName="FirmaEntrada" />
+                <ScalarProperty Name="FirmaSalida" ColumnName="FirmaSalida" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Constancias">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Constancias">
+              <MappingFragment StoreEntitySet="Constancias">
+                <ScalarProperty Name="IdConstaniacia" ColumnName="IdConstaniacia" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="Fechaconstancias" ColumnName="Fechaconstancias" />
+                <ScalarProperty Name="Horaconstancias" ColumnName="Horaconstancias" />
+                <ScalarProperty Name="ServicioMedico" ColumnName="ServicioMedico" />
+                <ScalarProperty Name="Especialidad" ColumnName="Especialidad" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="NumeroConstancia" ColumnName="NumeroConstancia" />
+                <ScalarProperty Name="Escaner" ColumnName="Escaner" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deducciones">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Deducciones">
+              <MappingFragment StoreEntitySet="Deducciones">
+                <ScalarProperty Name="IdDeducciones" ColumnName="IdDeducciones" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="Deducion" ColumnName="Deducion" />
+                <ScalarProperty Name="FechaDeduccion" ColumnName="FechaDeduccion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="IdDpt" ColumnName="IdDpt" />
+                <ScalarProperty Name="TpDepartamento" ColumnName="TpDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="EstadoCivil" ColumnName="EstadoCivil" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="DatosLaborales" ColumnName="DatosLaborales" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+                <ScalarProperty Name="IdDpt" ColumnName="IdDpt" />
+                <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+                <ScalarProperty Name="NivelAcademico" ColumnName="NivelAcademico" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Vacaciones" ColumnName="Vacaciones" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permisos">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Permisos">
+              <MappingFragment StoreEntitySet="Permisos">
+                <ScalarProperty Name="IdPermisos" ColumnName="IdPermisos" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="Fechapermisos" ColumnName="Fechapermisos" />
+                <ScalarProperty Name="Horapermisossalida" ColumnName="Horapermisossalida" />
+                <ScalarProperty Name="Horapermisosentrada" ColumnName="Horapermisosentrada" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planilla">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Planilla">
+              <MappingFragment StoreEntitySet="Planilla">
+                <ScalarProperty Name="IdPlanilla" ColumnName="IdPlanilla" />
+                <ScalarProperty Name="TpPlanilla" ColumnName="TpPlanilla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcidio">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Subcidio">
+              <MappingFragment StoreEntitySet="Subcidio">
+                <ScalarProperty Name="IdSubcidio" ColumnName="IdSubcidio" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="IdTipoSubcido" ColumnName="IdTipoSubcido" />
+                <ScalarProperty Name="ImagenSubcidio" ColumnName="ImagenSubcidio" />
+                <ScalarProperty Name="FechaIniciosubcidio" ColumnName="FechaIniciosubcidio" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="AlcaldiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoSubcidio">
+            <EntityTypeMapping TypeName="AlcaldiaModel.TipoSubcidio">
+              <MappingFragment StoreEntitySet="TipoSubcidio">
+                <ScalarProperty Name="IdTipoSubcidio" ColumnName="IdTipoSubcidio" />
+                <ScalarProperty Name="Subcidio" ColumnName="Subcidio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacaciones">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Vacaciones">
+              <MappingFragment StoreEntitySet="Vacaciones">
+                <ScalarProperty Name="IdVacaciones" ColumnName="IdVacaciones" />
+                <ScalarProperty Name="UnidadAdministrativa" ColumnName="UnidadAdministrativa" />
+                <ScalarProperty Name="CodigoFuncional" ColumnName="CodigoFuncional" />
+                <ScalarProperty Name="Dirigido" ColumnName="Dirigido" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
+                <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+                <ScalarProperty Name="FechaRetorna" ColumnName="FechaRetorna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

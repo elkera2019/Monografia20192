@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ede30fec9165460683587d17191bfd00" Name="Diagram1">
+        <EntityTypeShape EntityType="AlcaldiaModel.Asistencias" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Constancias" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Deducciones" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Departamento" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Empleado" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Permisos" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Planilla" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Subcidio" Width="1.5" PointX="8.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.TipoSubcidio" Width="1.5" PointX="6" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Vacaciones" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Asistencias_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Constancias_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Deducciones_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Empleado_Departamento" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Empleado_Planilla" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Permisos_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Subcidio_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Vacaciones_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="AlcaldiaModel.FK_Subcidio_TipoSubcidio" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
