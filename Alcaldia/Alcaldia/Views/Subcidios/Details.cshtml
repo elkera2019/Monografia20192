@@ -4,22 +4,44 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles subcidio</h2>
 
 <div>
-    <h4>Subcidio</h4>
+    @*<h4>Subcidio</h4>*@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ImagenSubcidio)
+            @Html.DisplayName("Inss")
+            </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.Inss)
+            </dd>
+        <dt>
+            @Html.DisplayName("Cedula")
+        </dt>
+        <dd>
+            @*@Html.DisplayFor(model => model.Empleado.Cedula)*@
+            @Html.Display("Cedula")
+        </dd>
+        <dt>
+            @Html.DisplayName("Nombre Completo")
+        </dt>
+        <dd>
+            @Html.Display("NombreCompleto")
+        </dd>
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ImagenSubcidio)*@
+            @Html.DisplayName("Imagen Subcidio")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImagenSubcidio)
+            @*@Html.DisplayFor(model => model.ImagenSubcidio)*@
+            <img src="@ViewData["Imagen"]" style="width: 450px; height: 350px;" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaIniciosubcidio)
+            @*@Html.DisplayNameFor(model => model.FechaIniciosubcidio)*@
+            @Html.DisplayName("Fecha Subcidio")
         </dt>
 
         <dd>
@@ -34,13 +56,13 @@
             @Html.DisplayFor(model => model.Dias)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Estado)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Estado)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Empleado.Cedula)
@@ -61,6 +83,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSubcidio }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.IdSubcidio, Inss = Model.Inss, Fecha = Model.FechaIniciosubcidio }) |
+    @Html.ActionLink("Regresar", "Index")
 </p>

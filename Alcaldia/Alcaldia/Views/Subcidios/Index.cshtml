@@ -4,20 +4,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Subcidios</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="col">
+            @Html.TextBox("buscar", "", new { @class = "form-control", autocomplete = "off" }) <br />
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-info "><span class="glyphicon glyphicon-search "></span></button>
+        </div>
+    </div>
+}
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ingresar nuevo", "Create")
 </p>
+@if (Model != null && ViewData["MSJ2"].Equals("Dato econtrado."))
+{
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayName("Inss")
+            </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ImagenSubcidio)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FechaIniciosubcidio)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Dias)
         </th>
         <th>
@@ -25,22 +40,26 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Empleado.Cedula)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.TipoSubcidio.Subcidio)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Inss)
+            </td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ImagenSubcidio)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.FechaIniciosubcidio)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Dias)
         </td>
         <td>
@@ -48,16 +67,25 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Empleado.Cedula)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.TipoSubcidio.Subcidio)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdSubcidio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdSubcidio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdSubcidio })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.IdSubcidio }) |*@
+            @Html.ActionLink("Detalles", "Details", new { id = item.IdSubcidio,Inss=item.Inss }) |
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.IdSubcidio })*@
         </td>
     </tr>
 }
 
 </table>
+}
+@if (ViewData["MSJ2"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal('@ViewData["MSJ2"]');
+        };
+    </script>
+}

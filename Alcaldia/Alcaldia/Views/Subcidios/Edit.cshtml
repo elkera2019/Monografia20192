@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Editar subcidio</h2>
 
 
 @using (Html.BeginForm())
@@ -12,37 +12,82 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Subcidio</h4>
+        @*<h4>Subcidio</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdSubcidio)
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Inss, "Inss", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Inss", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Inss, "", new { @class = "text-danger" })
             </div>
+        </div>*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.Inss, "Inss", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Inss", null, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.Inss, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Chasis, "Chasis", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("Cedula", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Cedula", null, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.Chasis, "Chasis", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("Nombre Completo", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("NombreCompleto", null, new { @class = "form-control", @readonly = "readonly" })
+            </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdTipoSubcido, "IdTipoSubcido", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IdTipoSubcido, "Tipo Subcido", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("IdTipoSubcido", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IdTipoSubcido, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImagenSubcidio, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ImagenSubcidio, "Imagen Subcidio",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ImagenSubcidio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ImagenSubcidio, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+        <div class="form-group">
+            <div>
+                <img src="@ViewData["Escaner"]" style="width: 450px; height: 450px;" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagenSubcidio, "Image Subcidio",htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Escaner, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.TextBox("img", null, new { type = "file", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ImagenSubcidio, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FechaIniciosubcidio, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.Chasis, "Chasis", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @Html.Label("Fecha Original", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("Fecha2", null, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaIniciosubcidio,"Fecha Subcidio" ,htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FechaIniciosubcidio, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaIniciosubcidio, "", new { @class = "text-danger" })
@@ -57,7 +102,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -65,20 +110,30 @@
                     @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Regresar", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+        $(function () {
+            var a = '@TempData["p1"]';
+            if (a != '')
+                //toastr.error("", a);
+            toastr.info("", a);
+               // alert("ab" + a)
+        })
+</script> 
 }

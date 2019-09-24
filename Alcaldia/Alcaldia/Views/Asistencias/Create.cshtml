@@ -97,8 +97,11 @@
         </div>
     </div>
 }
-@if (Model !=null)
+@using (Html.BeginForm("Create", "Asistencias", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
+    if (Model != null)
+    {
         <table class="table table-info">
             <tr>
                 <th>
@@ -126,6 +129,7 @@
                
                 <th></th>
             </tr>
+
             @foreach (DataRow row in Model.Tables[0].Rows)
 
             {
@@ -134,6 +138,7 @@
                     <td>
                         @row["Inss"]
                     
+                    @*@Html.TextBox("Inss",null)*@
                       
                     </td>
                     <td>
@@ -149,24 +154,22 @@
                     </td>
                     <td>
                         @*@row["HoraEntrada"]*@
-                        @using (Html.BeginForm())
-                        {
+                       
                         <div class="col-md-8">
                         @Html.TextBox("HoraEntrada", null, new { @class = "form-control", autocomplete = "off", @type = "time" })
                         </div>
-                        }
+                       
                     </td>
                     @*<td>
                         @row["FirmaEntrada"]
                     </td>*@
                     <td>
                         @*@row["HoraSalida"]*@
-                        @using (Html.BeginForm())
-                        {
-                        <div class="col-md-6">
+                       
+                        <div class="col-md-8">
                         @Html.TextBox("HoraSalida", null, new { @class = "form-control", autocomplete = "off", @type = "time", @readonly = "readonly" })
                         </div>
-                        }
+                      
                     </td>
                     @*<td>
                         @row["FirmaSalida"]
@@ -176,9 +179,8 @@
             }
 </table>
 }
-@using (Html.BeginForm("Create", "Asistencias", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+
+   
     <div class="form-group">
         @*<div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

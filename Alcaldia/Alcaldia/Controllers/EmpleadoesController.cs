@@ -29,6 +29,30 @@ namespace Alcaldia.Controllers
             var empleado = db.Empleado.Include(e => e.Departamento).Include(e => e.Planilla);
             return View(empleado.ToList());
         }
+
+        public ActionResult ISubcidio(string buscar)
+        {
+            string msj = "";
+            var con = from x in db.Empleado select x;
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                con = con.Where(a => a.Inss.Contains(buscar));
+                if (con.Count() != 0)
+                {
+                    msj = "Empleado encontrado";
+                }
+                else
+                {
+                    msj = "Empleado no encontrado";
+                }
+            }
+            else
+            {
+                con = null;
+            }
+            ViewData["MSJ4"] = msj;
+            return View(con);
+        }
         public ActionResult IConstancia(string obj)
         {
             string mensaje2="";

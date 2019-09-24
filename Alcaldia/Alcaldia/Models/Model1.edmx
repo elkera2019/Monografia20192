@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AlcaldiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AlcaldiaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asistencias">
           <Key>
             <PropertyRef Name="IdAsistencias" />
@@ -73,6 +73,15 @@
           <Property Name="Estado" Type="bit" />
           <Property Name="Sexo" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Logeo">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="255" />
+          <Property Name="Inss" Type="varchar" MaxLength="255" />
+          <Property Name="Permisos" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="Permisos">
           <Key>
             <PropertyRef Name="IdPermisos" />
@@ -134,6 +143,18 @@
           <Property Name="FechaInicial" Type="date" />
           <Property Name="FechaRetorna" Type="date" />
         </EntityType>
+        <Association Name="FK__Logeo__Inss__49C3F6B7">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Logeo" Type="Self.Logeo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Logeo">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Asistencias_Empleado">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
           <End Role="Asistencias" Type="Self.Asistencias" Multiplicity="*" />
@@ -248,12 +269,17 @@
           <EntitySet Name="Deducciones" EntityType="Self.Deducciones" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logeo" EntityType="Self.Logeo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permisos" EntityType="Self.Permisos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Planilla" EntityType="Self.Planilla" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subcidio" EntityType="Self.Subcidio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoSubcidio" EntityType="Self.TipoSubcidio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vacaciones" EntityType="Self.Vacaciones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Logeo__Inss__49C3F6B7" Association="Self.FK__Logeo__Inss__49C3F6B7">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Logeo" EntitySet="Logeo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Asistencias_Empleado" Association="Self.FK_Asistencias_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Asistencias" EntitySet="Asistencias" />
@@ -291,8 +317,7 @@
             <End Role="Vacaciones" EntitySet="Vacaciones" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlcaldiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -375,6 +400,7 @@
           <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_Empleado" FromRole="Empleado" ToRole="Permisos" />
           <NavigationProperty Name="Subcidio" Relationship="Self.FK_Subcidio_Empleado" FromRole="Empleado" ToRole="Subcidio" />
           <NavigationProperty Name="Vacaciones1" Relationship="Self.FK_Vacaciones_Empleado" FromRole="Empleado" ToRole="Vacaciones" />
+          <NavigationProperty Name="Logeo" Relationship="AlcaldiaModel.FK__Logeo__Inss__49C3F6B7" FromRole="Empleado" ToRole="Logeo" />
         </EntityType>
         <EntityType Name="Permisos">
           <Key>
@@ -599,7 +625,34 @@
             <End Role="TipoSubcidio" EntitySet="TipoSubcidio" />
             <End Role="Subcidio" EntitySet="Subcidio" />
           </AssociationSet>
+          <EntitySet Name="Logeo" EntityType="AlcaldiaModel.Logeo" />
+          <AssociationSet Name="FK__Logeo__Inss__49C3F6B7" Association="AlcaldiaModel.FK__Logeo__Inss__49C3F6B7">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Logeo" EntitySet="Logeo" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Logeo">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Inss" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Permisos" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleado" Relationship="AlcaldiaModel.FK__Logeo__Inss__49C3F6B7" FromRole="Logeo" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK__Logeo__Inss__49C3F6B7">
+          <End Type="AlcaldiaModel.Empleado" Role="Empleado" Multiplicity="0..1" />
+          <End Type="AlcaldiaModel.Logeo" Role="Logeo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Inss" />
+            </Principal>
+            <Dependent Role="Logeo">
+              <PropertyRef Name="Inss" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -743,6 +796,16 @@
                 <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
                 <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
                 <ScalarProperty Name="FechaRetorna" ColumnName="FechaRetorna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logeo">
+            <EntityTypeMapping TypeName="AlcaldiaModel.Logeo">
+              <MappingFragment StoreEntitySet="Logeo">
+                <ScalarProperty Name="Permisos" ColumnName="Permisos" />
+                <ScalarProperty Name="Inss" ColumnName="Inss" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

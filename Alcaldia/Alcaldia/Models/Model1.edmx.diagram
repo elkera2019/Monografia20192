@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="AlcaldiaModel.Permisos" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AlcaldiaModel.Planilla" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="AlcaldiaModel.Subcidio" Width="1.5" PointX="8.25" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlcaldiaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlcaldiaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AlcaldiaModel.TipoSubcidio" Width="1.5" PointX="6" PointY="18" IsExpanded="true" />
         <EntityTypeShape EntityType="AlcaldiaModel.Vacaciones" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
         <AssociationConnector Association="AlcaldiaModel.FK_Asistencias_Empleado" ManuallyRouted="false" />
@@ -25,6 +25,8 @@
         <AssociationConnector Association="AlcaldiaModel.FK_Subcidio_Empleado" ManuallyRouted="false" />
         <AssociationConnector Association="AlcaldiaModel.FK_Vacaciones_Empleado" ManuallyRouted="false" />
         <AssociationConnector Association="AlcaldiaModel.FK_Subcidio_TipoSubcidio" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AlcaldiaModel.Logeo" Width="1.5" PointX="5.25" PointY="0.875" />
+        <AssociationConnector Association="AlcaldiaModel.FK__Logeo__Inss__49C3F6B7" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

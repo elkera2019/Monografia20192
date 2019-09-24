@@ -16,6 +16,9 @@ namespace Alcaldia.Controllers
         private AlcaldiaEntities1 db = new AlcaldiaEntities1();
         private static DateTime FechaB;
         private static List<Asistencias> listasistencia = new List<Asistencias>();
+        
+
+        private static List<string> listainss = new List<string>();
         private static DataSet d = new DataSet();
         // GET: Asistencias
         public ActionResult Index()
@@ -59,7 +62,8 @@ namespace Alcaldia.Controllers
         public ActionResult Create(string Insertar)
         {
             string horas = "07:00";
-            TimeSpan horasalida=TimeSpan.Parse("05:00");
+            //TimeSpan horasalida=TimeSpan.Parse("05:00");
+            string horasalida = "05:00";
             //DataSet d = new DataSet();
             //DataTable dt;
             var consulta = from e in db.Empleado select e;
@@ -69,10 +73,12 @@ namespace Alcaldia.Controllers
                 d=Correr();
 
                 //dt = d.Tables[0];
-                foreach (DataRow row2 in d.Tables[0].Rows)
-                {
-                    listasistencia.Add(new Asistencias() { Inss = row2["Inss"].ToString(), FechaAsistencia = Convert.ToDateTime(Insertar), HoraEntrada = TimeSpan.Parse(horas), HoraSalida = horasalida });
-                }
+
+                //foreach (DataRow row2 in d.Tables[0].Rows)
+                //{
+                //    listasistencia.Add(new Asistencias() { Inss = row2["Inss"].ToString(), FechaAsistencia = Convert.ToDateTime(Insertar), HoraEntrada = TimeSpan.Parse(horas), HoraSalida = TimeSpan.Parse(horasalida) });
+                //}
+
                 //foreach (var g in listasistencia)
                 //{
                 //    Console.Write(g.ToString());
@@ -90,6 +96,7 @@ namespace Alcaldia.Controllers
 
             ViewBag.FechaAsistencia = Insertar;
             ViewBag.HoraEntrada = horas;
+            ViewBag.HoraSalida = horasalida;
             
             //DataSet ds = new DataSet();
             //ds = null;
@@ -128,20 +135,76 @@ namespace Alcaldia.Controllers
         //    return View(asistencias);
         //}
 
-        public ActionResult Create()
+        public ActionResult Create(DateTime FechaAsistencia, string HoraSalida, string[] HoraEntrada)
         {
-            TimeSpan HoraEntrada=TimeSpan.Parse("01:00");
-                TimeSpan HoraSalida=TimeSpan.Parse("08:00");
-            string bi = "00084";
+            //TimeSpan HoraEntrada=TimeSpan.Parse("01:00");
+            //    TimeSpan HoraSalida=TimeSpan.Parse("08:00");
 
-            foreach (var i in listasistencia)
+            //TimeSpan hora2 = TimeSpan.Parse(HoraEntrada);
+
+            //TimeSpan hora3 = TimeSpan.Parse(HoraSalida);
+            //d = Correr();
+            //TimeSpan hora2 = TimeSpan.Parse(HoraEntrada[]);
+
+            //string hoi = "00:01";
+            //TimeSpan hora2=TimeSpan.Parse(hoi);
+
+            //for (int i = 0; i < HoraEntrada.Length; i++)
+            //{
+            //hora2 = TimeSpan.Parse(HoraEntrada[i]);
+
+            //foreach (DataRow row2 in d.Tables[0].Rows)
+            //{
+            //    listasistencia.Add(new Asistencias() { Inss = row2["Inss"].ToString(), FechaAsistencia = FechaAsistencia, HoraEntrada = TimeSpan.Parse(HoraEntrada[i]), HoraSalida = TimeSpan.Parse(HoraSalida) });
+            //}
+
+            //}
+
+
+            foreach (DataRow row2 in d.Tables[0].Rows)
             {
-                if (i.Inss == bi)
-                {
-                    listasistencia.RemoveAt(i.Inss.Count());
-                    listasistencia.Add(new Asistencias() { Inss=bi,HoraEntrada=HoraEntrada,HoraSalida=HoraSalida});
-                }
+                listainss.Add(row2["Inss"].ToString());
             }
+            string[] arregloinss = listainss.ToArray();
+
+            for (int i = 0; i < HoraEntrada.Length; i++)
+            {
+               
+                for (int j = 0; j < arregloinss.Length; j++)
+                {
+                   
+                    listasistencia.Add(new Asistencias { Inss = arregloinss[j], HoraEntrada = TimeSpan.Parse(HoraEntrada[i]), HoraSalida = TimeSpan.Parse(HoraSalida),FechaAsistencia=FechaAsistencia });
+                    i++;
+                }
+                }
+
+            if (ModelState.IsValid)
+            {
+
+                db.Asistencias.AddRange(listasistencia);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            //prueba de recorrido con el foreach
+            //foreach (string wtf in listainss)
+            //{
+            //    foreach (string wtf2 in HoraEntrada)
+            //    {
+            //        listasistencia.Add(new Asistencias { Inss=wtf,HoraEntrada=TimeSpan.Parse(wtf2),HoraSalida=TimeSpan.Parse(HoraSalida)});
+            //    }
+            //}
+
+
+            //foreach (var i in listasistencia)
+            //{
+            //    if (i.Inss == bi)
+            //    {
+            //        listasistencia.RemoveAt(i.Inss.Count());
+            //        listasistencia.Add(new Asistencias() { Inss=bi,HoraEntrada=null/*hora2*/,HoraSalida=null});
+            //    }
+            //}
             return View();
         }
 

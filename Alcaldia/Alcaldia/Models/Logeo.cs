@@ -15,18 +15,16 @@ namespace Alcaldia.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Deducciones
+public partial class Logeo
 {
 
-    public int IdDeducciones { get; set; }
+    public string Usuario { get; set; }
+
+    public string Contraseña { get; set; }
 
     public string Inss { get; set; }
 
-    public Nullable<double> Deducion { get; set; }
-
-    public Nullable<System.DateTime> FechaDeduccion { get; set; }
-
-    public Nullable<bool> Estado { get; set; }
+    public string Permisos { get; set; }
 
 
 
